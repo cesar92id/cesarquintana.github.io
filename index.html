@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <h1 class="text center mt-5 display-4 text-primary ">Guia practica instalación Laravel 6, VueJS y Vuetify</h1>
+
+    <p>Esta guía tiene el objetivo de indicar los pasos necesarios para una correcta instalacion de las librerias
+        que usaremos en el desarrollo, los detalles como, qué es un componente en VUE, que es Vuetify o por qué 
+        usaremos laravel 6 en vez de la v7 no estaran detallas aquí porque no es el objetivo. Pero aun que 
+        no entienda, si sigue al pie de la letra la guía, todo funcionara correctamente. Además para hacer
+        las instalaciones necesarias necesitaran tener instalado como mínimo nodeJS y composer.  
+    </p>
+
+    <h3>1.- Instalación de Laravel</h3>
+    <p><b>1.1-</b> Instala la última versión de Laravel mediante composer. En este caso, mediante el CMD nos vamos a la
+        donde queremos que se guarde el nuevo proyecto y escribimos:
+    </p>
+    <pre class="p-3 mb-2 bg-light text-black"><code>
+        composer create-project --prefer-dist laravel/laravel nombre-proyecto "6.*"</code></pre>
+    <p><b>1.2-</b> Precionamos enter y esperamos que descarguen las librerias de laravel</p>
+
+    <p><b>Nota:</b> El asterisco (*) Indica que se instalara la ultima version de laravel 6. Si queremos 
+        instalar una en especifico debemos escribir por ejemplo 6.1.
+    </p>
+
+    <p>La documentación oficial de instalación esta 
+        <a href="https://laravel.com/docs/6.x#installing-laravel" class="text-decoration-none" target="_blank">AQUÍ</a>
+    </p>
+ 
+    <img src="img/imagen-1.png" class="rounded mx-auto d-block" width="600" height="">
+
+    
+    <p><b>1.3.-</b> Una vez finalizada la descarga, verificamos si laravel se descargo correctamente.
+        Desde el CMD nos dirigimos a la carpeta donde se instalo laravel e iniciamos el servidor 
+        con el siguiente comando:</p>
+
+        <pre class="p-3 mb-2 bg-light text-black"><code>
+            php artisan serve</code></pre>
+    
+    <p>Una vez montado el servidor, nos vamos al navegador y escribimos http://localhost:8000 para ver el 
+        nuevo proyecto laravel.
+    </p>
+
+    <img src="img/imagen-2.png" class="rounded mx-auto d-block" width="600" height="">
+
+    <p>
+        Si nos carga la siguiente pagina significa que todo se descargo correctamente.
+    </p>
+
+    <h3>2.- Instalar Laravel/UI</h3>
+    <p>Desde la versión de Laravel 6 ya no se incluye el pre-procesador ni framework Javascript 
+        y CSS por defecto. Toda esta funcionalidad fue movida para el frontend (scaffolding) que se
+         incluía de forma predeterminada (Bootstrap y Vue) ha sido extraída a un nuevo paquete oficial
+          llamado laravel/ui.</p>
+     <p><b>2.1.- </b>Para instalar dicho paquete nos vamos al CMD y luego a nos direccionamos a la carpeta
+    del proyecto y escribimos:</p>     
+        <pre class="p-3 mb-2 bg-light text-black"><code>
+            composer require laravel/ui:^1.0 --dev</code></pre> 
+    
+    <p>
+        Cuando finalice la instalación podrás agregar la configuración básica de una de las siguientes 3 opciones:
+    </p>
+
+    <pre class="p-3 mb-2 bg-light text-black"><code>
+        php artisan ui bootstrap
+        php artisan ui vue
+        php artisan ui react</code></pre> 
+
+    <p>En nuestro caso ejecutamos el comando correspondiente a Vue.</p>
+    <p><b>2.2.- </b>Una vez descargados los paquetes debemos instalarlos con el siguiente comando: </p>
+
+    <pre class="p-3 mb-2 bg-light text-black"><code>
+        npm install</code></pre>
+        
+    <p><b>2.3.- </b> Instaladas las nuevas dependencias nos al proyecto, para verificar que todo resulto 
+        bien, nos vamos a la carpeta del proyecto \resources\views, archivo welcome.blade.php y borramos todo
+    su contenido y agregamos el siguiente:  </p>
+
+    <pre class="p-3 mb-2 bg-light text-black"><code>
+    
+        &lt;!DOCTYPE html>
+&lt;html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    &lt;head>
+        &lt;meta charset="utf-8">
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1">
+
+        &lt;title>Laravel&lt;/title>
+
+        &lt;!-- Fonts -->
+        &lt;link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+
+        &lt;!-- Styles -->
+        &lt;link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
+    &lt;/head>
+    &lt;body>
+        &lt;div id="app">
+            &lt;example-component>&lt;/example-component>
+        &lt;/div>
+        &lt;script src="{{ mix('js/app.js') }}">&lt;/script>
+    &lt;/body>
+&lt;/html>
+
+    </code></pre>
+
+    <p>Como acabamos de hacer cambios que involucran a VUE debemos compilar nuestro codigo, para ello 
+        ejecutamos en el CMD, estando en el directorio raiz del proyecto el siguiente comando.
+    </p>
+
+    <pre class="p-3 mb-2 bg-light text-black"><code>
+        npm run dev</code></pre>
+
+    <p>Una vez compilado, nos vamos al navegador, dirección http://localhost:8000/ y si vemos lo siguiente 
+        tendremos instalado correctamente VUE en nuestro proyecto de laravel.
+    </p>
+
+    <img src="img/imagen-3.png" class="rounded mx-auto d-block" width="900" height="">
+
+
+        <p>Si queremos que cada vez que hagamos cambios en VUE se compile de forma automatica, ejecutamos 
+            el siguiente comando en el CMD:
+        </p>
+
+    <pre class="p-3 mb-2 bg-light text-black"><code>
+        npm run watch</code></pre>
+    
+    
+    <h3>3.- Instalar Vuetify en Laravel</h3>
+    <p>La instalación de Vuetity en laravel es muy sencilla, solo debemos:</p>
+    <p><b>3.1-</b> Desde la raíz del proyecto ejecuta la instalación mediante el siguiente comando:</p> 
+        
+    <pre class="p-3 mb-2 bg-light text-black"><code>
+        npm install vuetify</code></pre>
+        
+    <p><b>3.2.- </b>Debemos editar app.js de la carpeta resources/js/app.js para iniciar Vuetify: </p>
+        
+        <pre class="p-3 mb-2 bg-light text-black"><code>
+            import Vuetify from 'vuetify'
+            Vue.use(Vuetify);</code></pre>
+        
+    <p>Y añade la instancia de Vuetify como parámetro en la de Vue:</p>
+
+    <pre class="p-3 mb-2 bg-light text-black"><code>
+        const app = new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+        });</code></pre>
+
+    <p>Finalmente, con las modiciaciones el archivo app.js debe quedar así:</p>
+
+    <img src="img/imagen-4.png" class="rounded mx-auto d-block" width="900" height="">
+    
+
+    <p><b>3.3.- </b>Añade 2 importaciones al fichero resources/sass/app.scss, una con la
+         fuente de los iconos de material design y otra con el css correspondiente a la
+          biblioteca vuetify.</p>
+
+          <pre class="p-3 mb-2 bg-light text-black"><code>
+            // Fonts
+            @import url('https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css');
+            
+            // Vuetify
+            @import '~vuetify/dist/vuetify.min.css';</code></pre>
+
+    <p><b>3.4.- </b> Reemplaza el contenido del componente resources/js/components/ExampleComponent.vue 
+        por el indicado en este enlace correspondiente al layout de ejemplo "google-contacts"
+        de la documentación oficial de vuetify. El cual puedes ver 
+        <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/docs/src/layouts/layouts/demos/google-contacts.vue" class="text-decoration-none" target="_blank">AQUÍ</a>
+        </p>
+
+        <p>Compilamos el nuevo codigo con el comando npm run dev.
+        </p>
+        <p>Una vez hecho eso, teniendo montado el servidor, nos vamos al navegador, escribimos http://localhost:8000/ 
+            y nos debe aparecer lo siguiente.
+        </p>
+
+    <img src="img/imagen-5.png" class="rounded mx-auto d-block" width="900" height="">
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
